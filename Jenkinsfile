@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        AWS_ACCESS_KEY_ID     = credentials(AKIAX3LNWYOGIVRPHOXY)
+        AWS_ACCESS_KEY_ID     = credentials('AKIAX3LNWYOGIVRPHOXY')
         AWS_SECRET_ACCESS_KEY = credentials('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')
         EB_REGION             = 'eu-west-2'
         EB_APP_NAME           = 'Research-application'
