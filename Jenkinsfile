@@ -11,10 +11,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    // Checkout code from GitHub
-                    git credentialsId: '3ee2d6a3-1048-4e36-9916-2997af2165fc', url: 'https://github.com/sanket0770/researchapp.git'
-                }
+                checkout scm
             }
         }
 
