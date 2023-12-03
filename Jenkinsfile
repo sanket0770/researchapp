@@ -21,7 +21,7 @@ pipeline {
                 }
             }
         }
-    stages {
+
         stage('Checkout') {
             steps {
                 script {
@@ -33,11 +33,10 @@ pipeline {
         stage('Deploy to Elastic Beanstalk') {
             steps {
                 script {
-                    bat 'pip install -r requirements.txt'  // If you have requirements.txt
-                    bat "eb deploy ${EB_ENV_NAME}"
+                    sh 'pip install -r requirements.txt'  // If you have requirements.txt
+                    sh "eb deploy ${EB_ENV_NAME}"
                 }
             }
         }
     }
-}
 }
