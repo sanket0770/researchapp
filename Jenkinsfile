@@ -22,14 +22,7 @@ pipeline {
             steps {
                 script {
                     sh 'pip install -r requirements.txt'  // If you have requirements.txt
-                    def deployCommand = "eb deploy ${EB_ENV_NAME}"
-
-                    try {
-                        sh deployCommand
-                    } catch (Exception e) {
-                        echo "Failed to deploy to Elastic Beanstalk. Error: ${e}"
-                        error "Deployment failed."
-                    }
+                    sh "eb deploy ${EB_ENV_NAME}"
                 }
             }
         }
