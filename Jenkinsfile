@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION            = 'eu-est-2'
+        AWS_REGION            = 'eu-west-2'
         AWS_CREDENTIALS_ID    = '25c9050a-a97c-46f2-9968-26db13b6e929'
         EB_APP_NAME           = 'Research-application'
         EB_ENV_NAME           = 'Research-application-env'
