@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>
+        Blogs
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .nav {
+            color: black;
+            padding: 14px 110px;
+            text-decoration: none;
+            font-size: 20px;
+            border: 3px solid white;
+            margin: 1%;
+        }
+
+        p {
+            width: 20em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body style="background-color: #E7DFD8; font-family: Playfair Display, serif;">
+    <div style="font-size: 40px; text-align: center;
+     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); ">
+        <div style="color: black;
+     float: left;
+     
+     text-decoration: none;
+     font-size: 20px;">{{request.user}}</div>
+
+        Recipe Book
+        <a style="color: black;
+    float: right;
+    text-decoration: none;
+    font-size: 20px;" href="\logout"> LogOut</a>
+    </div>
+
+    <div style="margin-top: 3%; margin-left: 34.4%;">
+        <a style="color: black;
+    padding: 14px 110px;
+    text-decoration: none;
+    font-size: 20px;
+    border: 3px solid white; 
+    " href="\recipe"><b>Write Your Recipe...</b> </a>
+    </div>
+
+    {% for i in k %}
+    <div style="width: 25%; display: inline-block; padding: 4%;">
+        <img src="{{i.image}}" alt="Avatar" style="height:70%; width:100%;">
+        <p><b>{{i.title}}</b></p>
+        <p> By {{i.author}}</p>
+    </div>
+    </div>
+    {% endfor %}
+</body>
+
+</html>

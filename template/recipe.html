@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>
+        Recipe
+    </title>
+    <style>
+        label,
+        button {
+            font-size: 20px;
+        }
+
+        input, select, option{
+            height: 5%;
+            width: 40%;
+            font-family: "Roboto",sans-serif;
+            border-radius: 5px;
+            border: 2px solid;
+            background-color: #E7DFD8;
+        }
+
+        textarea{
+            font-family: "Roboto",sans-serif;
+            font-size: 20px;
+            border-radius: 10px;
+            border: 2px solid;
+            background-color: #E7DFD8;
+       }
+
+       a{
+            color: black;
+            text-decoration: none;
+        }
+           
+    </style>
+</head>
+
+<body style="background-color: #E7DFD8; font-family: Playfair Display, serif;">
+    <div style="font-size: 40px; text-align: center; 
+     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); ">
+     <div style= "color: black;
+     float: left;
+     text-decoration: none;
+     font-size: 20px;" >{{request.user}}</div>
+        <a href="\home">Blog Post</a>
+        <a style= "color: black;
+    float: right;
+    text-decoration: none;
+    font-size: 20px;" href="\logout" >LogOut</a>
+    </div>
+
+    <div style=" margin: 4%; margin-bottom: 0;">
+        <form action="/recipe" method="POST" enctype=multipart/form-data>
+            {% csrf_token %}
+            <label for="name">Recipe Name:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+
+
+            <label for="author">Author:</label><br>
+            <input type="text" id="author" name="author"><br><br>
+
+
+            <label for="ingredient">Ingredient:</label><br>
+            <textarea type="text" id="ingredient" name="ingredient" style="width:500px;
+                    height:100px;"></textarea><br><br>
+            
+            <label for="recipe">Recipe:</label><br>
+            <textarea type="text" id="recipe" name="recipe" style="width:800px;
+                    height:300px;"></textarea><br><br>
+
+            <input style="height: 4%;" accept="image/*" type='file' id="imgInp" name="imgInp">Max size 1 MB...
+            <img id="blah" src="#" height="65%" width="30%"><br>
+
+            <button  type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
