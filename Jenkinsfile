@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     bat 'pip install -r requirements.txt'  // If you have requirements.txt
-                    bat "C:\\Windows\\System32\\eb deploy ${EB_ENV_NAME}"
+                    bat "eb deploy ${EB_ENV_NAME}"
                 }
             }
         }
