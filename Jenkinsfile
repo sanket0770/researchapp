@@ -1,25 +1,44 @@
 pipeline {
     agent any
-  
+
+    environment {
+        AWS_REGION = 'eu-west-2'
+        AWS_ACCESS_KEY_ID = credentials('AKIAX3LNWYOGIVRPHOXY')
+        AWS_SECRET_ACCESS_KEY = credentials('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')
+    }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                script {
+                    // Checkout the code from GitHub
+                    checkout scm
+                }
             }
         }
 
-        stage('Run Python Script') {
+        stage('Install Dependencies') {
             steps {
                 script {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '25c9050a-a97c-46f2-9968-26db13b6e929', accessKeyVariable: 'AKIAX3LNWYOGIVRPHOXY', secretKeyVariable: '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']]) 
-                
-                    {                
-                        bat 'pip install eb'
-                        bat 'eb deploy MyElasticBeanstalkAppEnv0001112'
-                    }
+                    // Install Python dependencies
+                    bat 'pip install -r requirements.txt'
                 }
             }
+        }
+
+        stage('Deploy to Elastic Beanstalk') {
+            steps {
+                script {
+                    // Deploy to Elastic Beanstalk
+                    bat 'eb deploy MyElasticBeanstalkAppEnv0001112'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up or additional steps after deployment
         }
     }
 }
