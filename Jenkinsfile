@@ -35,10 +35,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up or additional steps after deployment
-        }
-    }
 }
