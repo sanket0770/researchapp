@@ -16,7 +16,7 @@ pipeline {
                 
                     {                
                         bat 'pip install eb'
-                        sh 'eb deploy MyElasticBeanstalkAppEnv0001112'
+                        bat 'eb deploy MyElasticBeanstalkAppEnv0001112'
                     }
                 }
             }
