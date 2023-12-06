@@ -1,38 +1,22 @@
 pipeline {
     agent any
-
-    environment {
   
-        EB_REGION             = 'eu-west-2'
-        EB_APP_NAME           = 'Research-application'
-        EB_ENV_NAME           = 'Research-application-env'
-    }
 
     stages {
-        stage('Debug Information') {
-            steps {
-                script {
-
-                    echo "EB_REGION: ${EB_REGION}"
-                    echo "EB_APP_NAME: ${EB_APP_NAME}"
-                    echo "EB_ENV_NAME: ${EB_ENV_NAME}"
-                }
-            }
-        }
-
         stage('Checkout') {
             steps {
-                script {
-                    checkout scm
-                }
+                checkout scm
             }
         }
 
-        stage('Deploy to Elastic Beanstalk') {
+        stage('Run Python Script') {
             steps {
                 script {
-                    bat 'pip install -r requirements.txt'  // If you have requirements.txt
-                    bat "eb deploy ${EB_ENV_NAME}"
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '25c9050a-a97c-46f2-9968-26db13b6e929', accessKeyVariable: 'AKIAX3LNWYOGIVRPHOXY', secretKeyVariable: '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']]) 
+                
+                    {                
+                        bat 'eb deploy MyElasticBeanstalkAppEnv0001112'
+                    }
                 }
             }
         }
